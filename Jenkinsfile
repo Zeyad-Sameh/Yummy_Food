@@ -1,20 +1,20 @@
-node {
-    git branch: 'main', url: 'https://github.com/Zeyad-Sameh/Yummy_Food.git'
+pipeline{
+    agent any
 
-    stage('build') {
-        try {
-            sh 'echo "elzoz is top"'
-        } catch(Exception e) {
-            sh 'echo "mohab is top"'
-            throw e
+    stages{
+        stage('build'){
+            steps{
+                script{
+                    echo "build in progress"
+                }
+            }
         }
-    }
-
-    stage('test') {
-        if (env.BRANCH_NAME == 'feature') {
-            sh 'echo "test"'
-        } else {
-            sh 'echo "skip test stage"'
+        stage('test'){
+            steps{
+                script{
+                    echo "test in progress"
+                }
+            }
         }
     }
 }
