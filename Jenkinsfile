@@ -1,5 +1,5 @@
 node {
-    git branch: '*/main', url: 'https://github.com/Zeyad-Sameh/Yummy_Food.git'
+    git branch: 'main', url: 'https://github.com/Zeyad-Sameh/Yummy_Food.git'
 
     stage('build') {
         try {
