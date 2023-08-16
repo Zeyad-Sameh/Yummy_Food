@@ -1,5 +1,3 @@
-Scripted pipeline
-#####
 node {
     git branch: 'main', url: 'https://github.com/ZiadSamehShehawy/Yummy_Food.git'
 
