@@ -1,28 +1,22 @@
-pipeline{
-    agent any
+Scripted pipeline
+#####
+node {
+    git branch: 'main', url: 'https://github.com/ZiadSamehShehawy/Yummy_Food.git'
 
-    stages{
-        stage('build'){
-            steps{
-                script{
-                    echo "build in progress"
-                }
-            }
-        }
-        stage('test'){
-            steps{
-                script{
-                    echo "test in progress"
-                }
-            }
+    stage('build') {
+        try {
+            sh 'echo "elzoz is top"'
+        } catch(Exception e) {
+            sh 'echo "mohab is top"'
+            throw e
         }
     }
-    post {
-  success {
-    slackSend channel: 'jenkins-ci', message: 'Build Sucess - ${env.JOB_NAME} ${env.BUILD_NUMBER} (<${env.BUILD_URL}|Open>)', teamDomain: 'team elzoz', tokenCredentialId: 'notification'
-  }
-  failure {
-    slackSend channel: 'jenkins-ci', message: 'Build fail- ${env.JOB_NAME} ${env.BUILD_NUMBER} (<${env.BUILD_URL}|Open>)', teamDomain: 'team elzoz', tokenCredentialId: 'notification'
-  }
-}
+
+    stage('test') {
+        if (env.BRANCH_NAME == 'feature') {
+            sh 'echo "test"'
+        } else {
+            sh 'echo "skip test stage"'
+        }
+    }
 }
